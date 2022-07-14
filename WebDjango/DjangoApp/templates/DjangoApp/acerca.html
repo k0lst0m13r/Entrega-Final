@@ -1,0 +1,74 @@
+
+{% extends "DjangoApp/base.html" %}
+{% load static %}
+
+{% block titulo %}k0lst0m13r-h0m3{% endblock %}
+
+{% block contenido %}
+
+  <main id="main">
+
+
+
+    <!-- ======= About Section ======= -->
+    <section class="team" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+      <div class="container">
+
+          <div class="section-title my-3"> 
+              <h2>Acerca de mí</h2>
+          </div>
+
+        <div class="row">
+
+          <div class="col-lg-8 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+              <div class="member-img">
+                <img src="{% static 'DjangoApp/assets/img/about/acerca.jpg' %}" class="img-fluid" alt="">
+                <div class="social">
+                  <a href="https://github.com/k0lst0m13r"><i class="bi bi-github"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href="https://www.instagram.com/kolstomierdevs?igshid=YmMyMTA2M2Y="><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.linkedin.com/in/julio-branda-71a92a233"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>Julio Branda</h4>
+                <span>Desarrollador Independiente</span>
+                <p>Mi nombre es Julio, tengo 50 años. Desde chico me apasionó la ciencia ficción, y por 
+                  supuesto la informática. Mi primera aproximación a éste mundo fascinante, fué a través 
+                  de un curso de armado y reparación de PC que hice hace ya casi 20 años. Allí aprendí,
+                  además de a manipular hardware, a instalar Windows 98 y XP. Poquito tiempo tardé en 
+                  cansarme de las copias pirata de Windows, de renagar con interminables cantidades de virus y spyware,
+                  y de romper sistemas instalando y desintalando antivirus pesadísimos... Siempre terminaba igual. Otra
+                  vez a formatear e instalar de nuevo. Y así fue hasta que me animé y probé Linux. La primer 
+                  distro fué Ubuntu, y ya no hubo vuelta atrás. Igualito que Alicia (o Neo) caí por el agujero siguiendo
+                  al conejo blanco, o al pingüinito de Linux, que para el caso da igual. Y así probé Debian, Fedora
+                  Mint, Slitaz, Bodhi y otros tantos. Pero finalmente me terminé enamorando de CranchBang y hoy uso
+                  Bunsenlabs. Ya un poco envalentonado por haber escrito tres o cuatro comandos en la terminal, me 
+                  lancé a hacer un tutorial de HTML, sin tener mucha idea de que se trataba. Lo cierto es que algo después
+                  me encontré con Pyhton y la promesa de ser un buen lenguaje para empezar a aprender programación.
+                  Y ciertamente que cumplió! Por supuesto también me dí el gusto de hacer algún curso de Javascript,
+                  y otro de Bootstarp, también coqueteé con Ruby y Ruby on Rails. Pero finalmente me decidí a profundizar
+                  un poco mas en Python y comenzar con Django. Y de esa manera fué que llegué a Coder House y éste 
+                  es el proyecto final del curso. El proyecto es un blog con su lógica enteramente construida en 
+                  Python a través de Django y todas las templates son de Bootstarp, descargadas del sitio Boostrapmade 
+                  y modificadas para ajustarlas a los requerimientos del proyecto. Escribí todos los models y 
+                  formularios necesarios para interactuar con la DB, También gestioné las URLs y las vistas. Creé
+                  las carpetas necesarias para las plantillas y los archivos css y js en 'static'. En fin, 
+                  Todo lo necesario para que el proyecto sea 100% funcional
+
+                  
+                </p>
+              </div>
+            </div>
+          </div>        
+          
+
+        </div>
+        
+      </div>
+    </section><!-- End About Section -->
+
+  </main><!-- End #main -->
+
+ {% endblock %}

@@ -1,0 +1,27 @@
+{% extends "DjangoApp/base2.html" %}
+
+{% load static %}
+
+{% block titulo %}k0lst0m13r-m4s-s3rv1c10s{% endblock %}
+
+{% block contenido %}
+
+
+
+<section class="features">
+    <div class="container">
+        <div class="row" data-aos="fade-up">
+            <div class="section-title"> 
+                <h2>Agregar Servicio</h2>
+            </div>            
+            <div class="d-flex justify-cntent-center align-items-center">    
+                <form method="POST" class="post-form">{% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Agregar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section> 
+
+{% endblock %}
