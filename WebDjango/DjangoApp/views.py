@@ -147,21 +147,22 @@ def eliminarPost(request, post_id):
 
 def editarPost(request, post_id):
     post = Post.objects.get(id=post_id)
+    form = CrearPost(request.POST)
     if request.method == 'POST':
-        form = crearPost(request.POST)
+        form = CrearPost(request.POST)
         if form.is_valid():
             post_info = form.cleaned_data.get
-            post.titulo = post_info['titulo']
-            post.imagen = post_info['imagen']
-            post.post = post_info['post']
-            post.autor = post_info['autor']
-            post.fecha = post_info['fecha']
+            post.titulo = post_info('titulo')
+            post.imagen = post_info('imagen')
+            post.post = post_info('post')
+            post.autor = post_info('autor')
+            post.fecha = post_info('fecha')
             form.save()
-            return redirect('blogSingle')
+            return redirect('blog')
 
         else:
             return render(request, 'DjangoApp/editarPost.html', {'form': form, 'post':post})
 
-    form = crearPost(initial={'titulo': post.titulo, 'imagen': post.imagen, 'post': post.post, 'autor': post.autor, 'fecha': post.fecha})
+    form = CrearPost(initial={'titulo': post.titulo, 'imagen': post.imagen, 'post': post.post, 'autor': post.autor, 'fecha': post.fecha})
 
     return render(request, 'DjangoApp/editarPost.html', {'form': form, 'post':post})

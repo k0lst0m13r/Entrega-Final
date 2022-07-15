@@ -29,6 +29,7 @@ urlpatterns = [
     path('contacto',views.contacto, name="contacto"),
     path('portfolio',views.portfolio, name="portfolio"),
     path('blog',views.blog, name="blog"),
+    path('blogSingle',views.blogSingle, name="blogSingles"),
     path('blogSingle',views.comentarios, name="comentarios"),
     path('agregarServicio', views.agregarServicio, name="agregarServicio"),
     path('crearPost', views.crearPost, name="crearPost"),
