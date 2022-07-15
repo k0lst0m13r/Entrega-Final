@@ -76,7 +76,10 @@ def blog(request):
 
 def blogSingle(request, post_id):
     post = Post.objects.get(id=post_id)
-    ctx = {"post": post}
+    comentarios = Comentarios.objects.all()
+    ctx = {"post": post, "comentarios": comentarios}
+
+
     return render(request, 'DjangoApp/blogSingle.html', ctx)
 
 def acerca(request):
@@ -96,13 +99,14 @@ def comentarios(request):
         form = CommentForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('blog')
+            return redirect('comentarios')
 
     else:
         form = CommentForm()
 
     ctx = {"form": form}
     return render(request, 'DjangoApp/comentarios.html' ,ctx)
+
 
 def agregarServicio(request):
 
@@ -129,12 +133,8 @@ def crearPost(request):
 
             ctx = {"form": form,}
             return redirect('blog')
-
-
     else:
         form = CrearPost()
-
-
 
     ctx = {"form": form,}
     return render(request, 'DjangoApp/crearPost.html' ,ctx)
@@ -162,6 +162,6 @@ def editarPost(request, post_id):
         else:
             return render(request, 'DjangoApp/editarPost.html', {'form': form, 'post':post})
 
-    formEditar = crearPost(initial={'titulo': post.titulo, 'imagen': post.imagen, 'post': post.post, 'autor': post.autor, 'fecha': post.fecha})
+    form = crearPost(initial={'titulo': post.titulo, 'imagen': post.imagen, 'post': post.post, 'autor': post.autor, 'fecha': post.fecha})
 
-    return render(request, 'DjangoApp/editarPost.html', {'form': formEditar, 'post':post})
+    return render(request, 'DjangoApp/editarPost.html', {'form': form, 'post':post})

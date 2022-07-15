@@ -22,20 +22,20 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login', views.log_in, name='login'),
-    path('logout', views.log_out, name='logout'),   
+    path('logout', views.log_out, name='logout'),
     path('registro', views.registro, name="registro"),
     path('',views.index, name="index"),
     path('servicios',views.servicios, name="servicios"),
     path('contacto',views.contacto, name="contacto"),
     path('portfolio',views.portfolio, name="portfolio"),
     path('blog',views.blog, name="blog"),
-    path('comentarios',views.comentarios, name="comentarios"),
+    path('blogSingle',views.comentarios, name="comentarios"),
     path('agregarServicio', views.agregarServicio, name="agregarServicio"),
     path('crearPost', views.crearPost, name="crearPost"),
     path('blogSingle/<post_id>/', views.blogSingle, name="blogSingle"),
     path('acerca', views.acerca, name="acerca"),
     path('eliminarPost/<post_id>/', views.eliminarPost, name="eliminarPost"),
-    path('editarPost/<post_id>/', views.editarPost, name="editarPost")   
+    path('editarPost/<post_id>/', views.editarPost, name="editarPost")
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

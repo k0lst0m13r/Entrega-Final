@@ -16,11 +16,10 @@
             </div>
 
 
-        <div class="row">
-          <div class="col-lg-8 entries">
-            <button><a href="{% url 'crearPost' %}">Crear Post</a></button>
-          </div>
-          <div class="col-lg-8 entries">
+        <div class="entry">
+            <a href="{% url 'crearPost' %}"><h2>Crear Post</h2></a>
+        </div>
+
 
              {% for ent in  post %}
 
@@ -52,7 +51,7 @@
 
 
 
-        </div>
+
 
       </div>
     </section><!-- End Blog Section -->

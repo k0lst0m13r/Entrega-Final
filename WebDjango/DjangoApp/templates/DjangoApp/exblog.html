@@ -9,37 +9,37 @@
 <section class="features">
     <div class="container">
         <div class="row" data-aos="fade-up">
-            <div class="section-title"> 
+            <div class="section-title">
                 <h2>Comentarios</h2>
             </div>
-        </div> 
-                    
-    
+        </div>
+
+
         <nav class="navbar" style="background-color: #365053;">
                 <div class="container-fluid">
                     <a class="navbar-brand"><h1>BLOG</h1></a>
                       <form class="d-flex"   method="post">
-                         {% csrf_token %} 
+                         {% csrf_token %}
                         <input class="form-control me-2" name="buscar" placeholder="Autor" aria-label="Search">
                         <button class="btn"  style="background-color: #0094a7; color: white" type="submit">Buscar</button>
                       </form>
                 </div>
             </nav>
-    
+
 
         <style>
             table {
               border-collapse: collapse;
               width: 100%;
             }
-    
+
             th, td {
               text-align: left;
               padding: 8px;
             }
-    
+
             tr:nth-child(even){background-color: #f2f2f2}
-    
+
             th {
               background-color: #0094a7;
               color: white;
@@ -62,10 +62,10 @@
                 <td>{{comentario.comentario}}</td>
                 <td>{{comentario.creado}}</td>
             </tr>
-
+{% for comentario in comentarios %}
             {% endfor %}
-            
-            
+
+
         </table>
     </div>
 </section>
@@ -80,9 +80,9 @@
 
 
 
-       
 
-    
+
+
 
 
 {% endblock %}
