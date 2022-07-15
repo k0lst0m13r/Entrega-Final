@@ -9,7 +9,7 @@ from .forms import *
 
 
 
-def log_in(request):    
+def log_in(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -23,17 +23,17 @@ def log_in(request):
                 return redirect('login')
         else:
             return redirect('login')
-    form =  AuthenticationForm()  
-    ctx = {"form": form}    
-    return render(request, 'DjangoApp/login.html',ctx)            
-    
+    form =  AuthenticationForm()
+    ctx = {"form": form}
+    return render(request, 'DjangoApp/login.html',ctx)
+
 def registro(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
-            
+
             form.save()
             user = authenticate(username=username, password=password)
             if user is not None:
@@ -41,11 +41,11 @@ def registro(request):
                 return redirect('index')
             else:
                 return redirect('login')
-            
-            return redirect('index')        
-        
-        return render(request, 'DjangoApp/registro.html', {"form": form})        
-    
+
+            return redirect('index')
+
+        return render(request, 'DjangoApp/registro.html', {"form": form})
+
 
     else:
         form = UserRegisterForm()
@@ -56,7 +56,7 @@ def log_out(request):
     logout(request)
     return redirect('index')
 
-def base(request):     
+def base(request):
     return render(request, 'DjangoApp/base.html')
 
 
@@ -84,62 +84,62 @@ def acerca(request):
 
 def servicios(request):
     servicios = Servicios.objects.all()
-        
-    ctx = {"servicios": servicios} 
+
+    ctx = {"servicios": servicios}
     return render(request, 'DjangoApp/servicios.html', ctx)
 
 # -----Vistas Auxiliares-----------
 
-def comentarios(request):   
-    
+def comentarios(request):
+
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('blog')
-        
-    else:
-        form = CommentForm()   
-    
-    ctx = {"form": form}  
-    return render(request, 'DjangoApp/comentarios.html' ,ctx) 
 
-def agregarServicio(request):   
-    
+    else:
+        form = CommentForm()
+
+    ctx = {"form": form}
+    return render(request, 'DjangoApp/comentarios.html' ,ctx)
+
+def agregarServicio(request):
+
     if request.method == "POST":
         form = ServiciosForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('servicios')
-        
+
     else:
-        form = ServiciosForm()   
-    
-    ctx = {"form": form}  
-    return render(request, 'DjangoApp/agregarServicio.html' ,ctx) 
+        form = ServiciosForm()
+
+    ctx = {"form": form}
+    return render(request, 'DjangoApp/agregarServicio.html' ,ctx)
 
 
-  
-def crearPost(request):   
-    
+
+def crearPost(request):
+
     if request.method == "POST":
         form = CrearPost(request.POST)
         if form.is_valid():
             form.save()
-    
+
             ctx = {"form": form,}
-            return redirect('blog')       
-           
-        
+            return redirect('blog')
+
+
     else:
-        form = CrearPost()    
-    
-          
-    
-    ctx = {"form": form,}  
+        form = CrearPost()
+
+
+
+    ctx = {"form": form,}
     return render(request, 'DjangoApp/crearPost.html' ,ctx)
-    
-    
+
+
 def eliminarPost(request, post_id):
     post = Post.objects.get(id=post_id)
     post.delete()
@@ -149,23 +149,19 @@ def editarPost(request, post_id):
     post = Post.objects.get(id=post_id)
     if request.method == 'POST':
         form = crearPost(request.POST)
-        if form.is_valid():            
+        if form.is_valid():
             post_info = form.cleaned_data.get
             post.titulo = post_info['titulo']
             post.imagen = post_info['imagen']
             post.post = post_info['post']
             post.autor = post_info['autor']
             post.fecha = post_info['fecha']
-            post.save()
+            form.save()
             return redirect('blogSingle')
-        
-                
+
         else:
-            return render(request, 'DjangoApp/editarPost.html', {'form': form, 'post':post})      
-        
-        
+            return render(request, 'DjangoApp/editarPost.html', {'form': form, 'post':post})
+
     formEditar = crearPost(initial={'titulo': post.titulo, 'imagen': post.imagen, 'post': post.post, 'autor': post.autor, 'fecha': post.fecha})
-        
-              
-    
-    return render(request, 'DjangoApp/editarPost.html', {'form': formEditar, 'post':post}) 
+
+    return render(request, 'DjangoApp/editarPost.html', {'form': formEditar, 'post':post})

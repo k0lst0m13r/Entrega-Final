@@ -11,10 +11,10 @@
 <section class="features">
         <div class="container">
             <div class="row" data-aos="fade-up">
-                <div class="section-title"> 
+                <div class="section-title">
                     <h2>Crear Post</h2>
-                </div>            
-                <div class="d-flex justify-cntent-center align-items-center">    
+                </div>
+                <div class="d-flex justify-cntent-center align-items-center">
                     <form method="post" action="{% url 'crearPost' %}" class="post-form">
                         {% csrf_token %}
                         {{ form.as_p }}
@@ -23,6 +23,6 @@
                 </div>
             </div>
         </div>
-    </section> 
-    
+    </section>
+
 {% endblock %}
