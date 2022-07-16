@@ -32,7 +32,7 @@
               <div class="entry-meta">
                 <ul>
                   <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="{% url 'acerca' %}">{{post.autor}}</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">{{post.fecha}}</time></a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="2020-01-01">{{post.fecha}}</time></a></li>
                   <!--li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li-->
                   <li class="d-flex align-items-center"><i class="bi bi-pencil"></i> <a href="{% url 'editarPost' post.id %}">Editar</a></li>
                   <li class="d-flex align-items-center"><i class="bi bi-x-circle"></i> <a href="{% url 'eliminarPost' post.id %}">Eliminar</a></li>
@@ -57,7 +57,7 @@
                 <div class="d-flex">
                   <div class="comment-img"><img src="assets/img/blog/comments-1.jpg" alt=""></div>
                   <div>
-                    <h5><a href="">{{comentario.nombre}}</a> <a href="{% url 'comentarios' %}" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
+                    <h5><a href="">{{comentario.nombre}}</a>{% if user.is_authenticated %}<a href="{% url 'comentarios' %}" class="reply"><i class="bi bi-reply-fill"></i> Reply</a>{% endif %}</h5>
                     <time datetime="2020-01-01">{{comentario.creado}}</time>
                     <p>
                       {{comentario.comentario}}
@@ -67,50 +67,33 @@
               </div><!-- End comment #1 -->
 
                 {% endfor %}
-
+              {% if user.is_authenticated %}
               <div class="reply-form">
-                <h4>Leave a Reply</h4>
-                <p>Your email address will not be published. Required fields are marked * </p>
+                <h4>Dejame un comentario</h4>
+                <p>Los comentarios son moderados por mi. Ante insultos o faltas de respeto, los elimino. </p>
                 <form action="{% url 'comentarios' %}">
-                  <div class="row">
-                    <div class="col-md-6 form-group">
-                      <input name="name" type="text" class="form-control" placeholder="Your Name*">
-                    </div>
-                    <div class="col-md-6 form-group">
-                      <input name="email" type="text" class="form-control" placeholder="Your Email*">
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col form-group">
-                      <input name="website" type="text" class="form-control" placeholder="Your Website">
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col form-group">
-                      <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Post Comment</button>
+
+                  <button type="submit" class="btn btn-primary">Enviar Comentario</button>
 
                 </form>
 
               </div>
-
+              {% endif %}
             </div><!-- End blog comments -->
 
           </div><!-- End blog entries list -->
 
           <div class="col-lg-4">
 
-            <div class="sidebar">
+        <!--       <div class="sidebar">
 
-              <h3 class="sidebar-title">Search</h3>
+            <h3 class="sidebar-title">Search</h3>
               <div class="sidebar-item search-form">
-                <form action="">
+               <form action="">
                   <input type="text">
                   <button type="submit"><i class="bi bi-search"></i></button>
                 </form>
-              </div><!-- End sidebar search formn-->
+              </div>
 
               <h3 class="sidebar-title">Categories</h3>
               <div class="sidebar-item categories">
@@ -122,7 +105,7 @@
                   <li><a href="#">Creative <span>(8)</span></a></li>
                   <li><a href="#">Educaion <span>(14)</span></a></li>
                 </ul>
-              </div><!-- End sidebar categories-->
+              </div>
 
               <h3 class="sidebar-title">Recent Posts</h3>
               <div class="sidebar-item recent-posts">
@@ -156,7 +139,7 @@
                   <time datetime="2020-01-01">Jan 1, 2020</time>
                 </div>
 
-              </div><!-- End sidebar recent posts-->
+              </div>
 
             </div><!-- End sidebar -->
 

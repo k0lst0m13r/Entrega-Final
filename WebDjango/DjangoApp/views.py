@@ -11,6 +11,8 @@ from datetime import datetime
 
 
 
+######  REGISTRO - LOGIN - LOGOUT  #######
+
 def log_in(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
@@ -58,6 +60,12 @@ def log_out(request):
     logout(request)
     return redirect('index')
 
+
+
+
+############## VISTAS PRINCIPALES ################
+
+
 def base(request):
     return render(request, 'DjangoApp/base.html')
 
@@ -65,11 +73,22 @@ def base(request):
 def index(request):
     return render(request, 'DjangoApp/index.html')
 
-def contacto(request):
-    return render(request, 'DjangoApp/contacto.html')
 
 def portfolio(request):
     return render(request, 'DjangoApp/portfolio.html')
+
+
+def acerca(request):
+    return render(request, 'DjangoApp/acerca.html')
+
+
+def servicios(request):
+    servicios = Servicios.objects.all()
+
+    ctx = {"servicios": servicios}
+    return render(request, 'DjangoApp/servicios.html', ctx)
+
+#----------- sección blog -------------#
 
 def blog(request):
     post = Post.objects.all()
@@ -84,16 +103,9 @@ def blogSingle(request, post_id):
 
     return render(request, 'DjangoApp/blogSingle.html', ctx)
 
-def acerca(request):
-    return render(request, 'DjangoApp/acerca.html')
 
-def servicios(request):
-    servicios = Servicios.objects.all()
 
-    ctx = {"servicios": servicios}
-    return render(request, 'DjangoApp/servicios.html', ctx)
-
-# -----Vistas Auxiliares-----------
+############## VISTAS AUXILIARES ##########
 
 def comentarios(request):
 
@@ -125,6 +137,7 @@ def agregarServicio(request):
     return render(request, 'DjangoApp/agregarServicio.html' ,ctx)
 
 
+#------------- sección post --------------#
 
 def crearPost(request):
 

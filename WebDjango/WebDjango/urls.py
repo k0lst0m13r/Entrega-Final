@@ -26,7 +26,6 @@ urlpatterns = [
     path('registro', views.registro, name="registro"),
     path('',views.index, name="index"),
     path('servicios',views.servicios, name="servicios"),
-    path('contacto',views.contacto, name="contacto"),
     path('portfolio',views.portfolio, name="portfolio"),
     path('blog',views.blog, name="blog"),
     path('blogSingle',views.comentarios, name="comentarios"),
