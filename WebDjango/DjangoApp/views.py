@@ -5,6 +5,8 @@ from django.http import HttpResponse
 from django.urls import reverse_lazy
 from DjangoApp.models import *
 from .forms import *
+from datetime import date
+from datetime import datetime
 
 
 
@@ -127,7 +129,7 @@ def agregarServicio(request):
 def crearPost(request):
 
     if request.method == "POST":
-        form = CrearPost(request.POST)
+        form = CrearPost(request.POST, request.FILES)
         if form.is_valid():
             form.save()
 
@@ -147,17 +149,17 @@ def eliminarPost(request, post_id):
 
 def editarPost(request, post_id):
     post = Post.objects.get(id=post_id)
-    form = CrearPost(request.POST)
+    form = CrearPost(request.POST, request.FILES)
     if request.method == 'POST':
-        form = CrearPost(request.POST)
+        form = CrearPost(request.POST, request.FILES)
         if form.is_valid():
             post_info = form.cleaned_data.get
             post.titulo = post_info('titulo')
             post.imagen = post_info('imagen')
             post.post = post_info('post')
             post.autor = post_info('autor')
-            post.fecha = post_info('fecha')
-            form.save()
+            post.fecha = datetime.now()
+            post.save()
             return redirect('blog')
 
         else:

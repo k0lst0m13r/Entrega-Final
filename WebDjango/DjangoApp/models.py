@@ -19,7 +19,7 @@ class Servicios(models.Model):
 
 class Post(models.Model):
     titulo = models.CharField(max_length=40)
-    imagen = models.ImageField(upload_to="blog/", default="/")
+    imagen = models.ImageField(upload_to="blog/", null=True)
     post = models.TextField()
     autor = models.CharField(max_length=40)
     fecha = models.DateTimeField(auto_now_add=True)

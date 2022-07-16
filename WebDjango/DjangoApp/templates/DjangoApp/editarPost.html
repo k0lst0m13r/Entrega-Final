@@ -9,11 +9,11 @@
 <section class="features">
         <div class="container">
             <div class="row" data-aos="fade-up">
-                <div class="section-title"> 
-                    <h2>Crear Post</h2>
-                </div>            
-                <div class="d-flex justify-cntent-center align-items-center">    
-                    <form action="{% url 'editarPost' post.id %}" method="post" class="post-form">
+                <div class="section-title">
+                    <h2>Editar Post</h2>
+                </div>
+                <div class="d-flex justify-cntent-center align-items-center">
+                    <form action="{% url 'editarPost' post.id %}" method="post" class="post-form" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <button type="primary">Guardar Cambios</button>
@@ -21,6 +21,6 @@
                 </div>
             </div>
         </div>
-    </section> 
+    </section>
 
 {% endblock %}
