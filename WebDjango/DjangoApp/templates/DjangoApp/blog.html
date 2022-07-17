@@ -11,14 +11,31 @@
     <section id="blog" class="blog">
       <div class="container" data-aos="fade-up">
 
-            <div class="section-title my-3">
-                <h2>Blog</h2>
-            </div>
 
+
+        <div class="section-title my-3">
+            <h2>Blog</h2>
+        </div>
 
         <div class="entry">
-            <a href="{% url 'crearPost' %}"><h2>Crear Post</h2></a>
+          <div class="section-title my-3">
+                <h1>Ponete al día con el mundo de la Informática</h1>
+            </div>
+            <div class="entry-img">
+              <img src="{% static 'DjangoApp/assets/img/features-1.svg' %}" alt="" class="img-fluid">
+          </div>
         </div>
+             {% if user.is_authenticated %}
+                {% if user.username == "admin" %}
+           <div class="section-title my-3">
+              <div class="entry">
+                <div class="d-grid gap-2">
+                  <a href="{% url 'crearPost' %}"><h3>Crear Post</h3></a>
+               </div>
+            </div>
+          </div>
+                {% endif %}
+            {% endif %}
 
 
              {% for ent in  post %}

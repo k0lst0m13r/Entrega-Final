@@ -16,7 +16,7 @@
                     <form action="{% url 'editarPost' post.id %}" method="post" class="post-form" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <button type="primary">Guardar Cambios</button>
+                        <button  class="btn"  style="background-color: #0094a7; color: white" type="submit">Guardar Cambios</button>
                     </form>
                 </div>
             </div>

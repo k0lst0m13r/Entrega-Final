@@ -34,8 +34,12 @@
                   <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="{% url 'acerca' %}">{{post.autor}}</a></li>
                   <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="2020-01-01">{{post.fecha}}</time></a></li>
                   <!--li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">12 Comments</a></li-->
+                  {% if user.is_authenticated %}
+                     {% if user.username == "admin" %}
                   <li class="d-flex align-items-center"><i class="bi bi-pencil"></i> <a href="{% url 'editarPost' post.id %}">Editar</a></li>
                   <li class="d-flex align-items-center"><i class="bi bi-x-circle"></i> <a href="{% url 'eliminarPost' post.id %}">Eliminar</a></li>
+                     {% endif %}
+                  {% endif %}
                 </ul>
               </div>
 
@@ -73,7 +77,7 @@
                 <p>Los comentarios son moderados por mi. Ante insultos o faltas de respeto, los elimino. </p>
                 <form action="{% url 'comentarios' %}">
 
-                  <button type="submit" class="btn btn-primary">Enviar Comentario</button>
+                  <button type="submit" class="btn btn-primary">Comentar</button>
 
                 </form>
 
