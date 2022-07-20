@@ -28,8 +28,24 @@ class CrearPost(ModelForm):
 
 class UserRegisterForm(UserCreationForm):
 
+    username = forms.CharField()
     email = forms.EmailField()
+    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Repetir Contraseña', widget=forms.PasswordInput)
+    #images = forms.ImageField(upload_to="perfil/", null=True)
+    first_name = models.CharField()
+    last_name = models.CharField()
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2',)
+        fields = ('username', 'email', 'password1', 'password2', 'first_name', 'last_name',)
+
+class UserEditForm(UserCreationForm):
+
+    email = forms.EmailField()
+    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Repetir Contraseña', widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ['email','password1','password2', 'first_name', 'last_name',]

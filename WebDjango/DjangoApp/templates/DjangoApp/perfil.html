@@ -1,0 +1,50 @@
+{% extends "DjangoApp/base.html" %}
+{% load static %}
+
+{% block titulo %}p3rf1l-usu4r10{% endblock %}
+
+
+{% block contenido %}
+
+  <main id="main">
+    <section class="features">
+        <div class="container">
+            <div class="row" data-aos="fade-up">
+                <div class="section-title">
+                    <h2>Tu Perfil de Usuario</h2>
+                </div>
+            </div>
+        </div>
+       <div class="container">
+         <div class="row">
+           <p><b>USUARIO:</b> {{user.username}} </p>
+         </div>
+         <div class="row">
+           <p><b>NOMBRE:</b> {{user.first_name}} </p>
+         </div>
+         <div class="row">
+           <p><b>APELLIDO:</b> {{user.last_name}} </p>
+         </div>
+         <div class="row">
+           <p><b>EMAIL:</b> {{user.email}} </p>
+        </div>
+        <div class="row">
+          <a href="{% url 'editarPerfil' %}">
+          <button  class="btn"  style="background-color: #0094a7; color: white" type="submit">Editar</button>
+        </a>
+        </div>
+
+
+       </div>
+
+
+
+
+
+
+    </section>
+ </main>
+
+
+
+{% endblock %}

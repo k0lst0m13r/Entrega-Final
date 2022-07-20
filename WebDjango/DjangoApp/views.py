@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from DjangoApp.models import *
@@ -87,6 +88,36 @@ def servicios(request):
 
     ctx = {"servicios": servicios}
     return render(request, 'DjangoApp/servicios.html', ctx)
+
+################## PERFIL ##################
+
+@login_required
+def perfil(request):
+    return render(request, 'DjangoApp/perfil.html',)
+
+@login_required
+def editarPerfil(request):
+    usuario = request.user
+    if request.method == 'POST':
+        form = UserEditForm(request.POST)
+        if form.is_valid():
+            info = form.cleaned_data
+            usuario.email = info['email']
+            usuario.password1 = info['password1']
+            usuario.password2 = info['password2']
+            usuario.first_name = info['first_name']
+            usuario.last_name = info['last_name']
+            usuario.save()
+
+            return redirect('perfil')
+    else:
+        form = UserEditForm(initial={'email':usuario.email, 'first_name':usuario.first_name, 'last_name': usuario.last_name,})
+
+    ctx = {'form': form,}
+    return render(request, 'DjangoApp/editarPerfil.html', ctx)
+
+
+
 
 #----------- sección blog -------------#
 

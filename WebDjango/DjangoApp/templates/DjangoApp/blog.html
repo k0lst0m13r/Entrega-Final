@@ -27,14 +27,15 @@
         </div>
              {% if user.is_authenticated %}
                 {% if user.username == "admin" %}
-           <div class="section-title my-3">
               <div class="entry">
-                <div class="d-grid gap-2">
-                  <a href="{% url 'crearPost' %}"><h3>Crear Post</h3></a>
+                <div class="row">
+                  <div class="section-title">
+
+                     <h3> <a href="{% url 'crearPost' %}"><button  class="btn" type="button" style="background-color: #0094a7; color: white">Crear Post</button></a> Estás logueado como Administrador</h3>
+                  </div>
                </div>
             </div>
-          </div>
-                {% endif %}
+              {% endif %}
             {% endif %}
 
 

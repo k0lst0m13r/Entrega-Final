@@ -34,7 +34,9 @@ urlpatterns = [
     path('blogSingle/<post_id>/', views.blogSingle, name="blogSingle"),
     path('acerca', views.acerca, name="acerca"),
     path('eliminarPost/<post_id>/', views.eliminarPost, name="eliminarPost"),
-    path('editarPost/<post_id>/', views.editarPost, name="editarPost")
+    path('editarPost/<post_id>/', views.editarPost, name="editarPost"),
+    path('perfil',views.perfil, name="perfil"),
+    path('editarPerfil',views.editarPerfil, name="editarPerfil"),
 ]
 
 if settings.DEBUG:
