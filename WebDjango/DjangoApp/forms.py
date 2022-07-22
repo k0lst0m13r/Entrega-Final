@@ -49,8 +49,8 @@ class UserEditForm(UserCreationForm):
         model = User
         fields = ['username', 'email','password1','password2', 'first_name', 'last_name']
 
-class EditarAvatar(ModelForm):
-
+class AvatarForm(ModelForm):
+    #imagen = models.ImageField()
     class Meta:
         model = Avatar
-        fields = ['imagen',]
+        fields = ['imagen']

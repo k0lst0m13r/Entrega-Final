@@ -58,7 +58,7 @@
           <li><a class="{% if request.path == '/acerca' %}active{% endif %}" href="{% url 'acerca' %}">Acerca de</a></li>
 
           {% if user.is_authenticated %}
-            <li><a href="{% url 'avatar' %}"><img class="rounded-circle"  src="{{url}}" style="height: 35px"></a></li>
+            <li><a href="{% url 'agregar_avatar' %}"><img class="rounded-circle"  src="{{url}}" style="height: 35px"></a></li>
             <li><a href="{% url 'perfil' %}"><b>{{user.username}}</b></a></li>
             <li><a href="{% url 'logout' %}"><b>Cerrar Sesión</b></a></li>
           {% else %}

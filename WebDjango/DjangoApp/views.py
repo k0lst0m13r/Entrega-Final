@@ -136,21 +136,22 @@ def editarPerfil(request):
     ctx = {'form': form,}
     return render(request, 'DjangoApp/editarPerfil.html', ctx)
 
+@login_required
+def agregar_avatar(request):
 
-def avatar(request):
     if request.method == "POST":
-        form = EditarAvatar(request.POST, request.FILES)
+        form = AvatarForm(request.POST, request.FILES)
         if form.is_valid():
-            u = User.objects.get(username=request.user)
-            avatar = Avatar(imagen=form.cleaned_data['imagen'])
+            user = User.objects.get(username=request.user.username)
+            avatar = Avatar(usuario=user, imagen=form.cleaned_data['imagen'])
             avatar.save()
             return redirect('perfil')
 
     else:
-        form = EditarAvatar()
+        form = AvatarForm()
 
     ctx = {"form": form}
-    return render(request, 'DjangoApp/avatar.html' ,ctx)
+    return render(request, 'DjangoApp/agregar_avatar.html' ,ctx)
 
 
 
