@@ -37,6 +37,7 @@ urlpatterns = [
     path('editarPost/<post_id>/', views.editarPost, name="editarPost"),
     path('perfil',views.perfil, name="perfil"),
     path('editarPerfil',views.editarPerfil, name="editarPerfil"),
+    path('avatar',views.avatar, name="avatar")
 ]
 
 if settings.DEBUG:

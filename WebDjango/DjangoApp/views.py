@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -72,6 +73,14 @@ def base(request):
 
 
 def index(request):
+    if request.user.is_authenticated:
+        try:
+            avatar = Avatar.objects.get(usuario=request.user)
+            url = avatar.imagen.url
+        except:
+            url = "DjangoApp/media/avatar/user_default.png"
+        return render(request, 'DjangoApp/index.html', {'url': url})
+
     return render(request, 'DjangoApp/index.html')
 
 
@@ -93,6 +102,14 @@ def servicios(request):
 
 @login_required
 def perfil(request):
+    if request.user.is_authenticated:
+        try:
+            avatar = Avatar.objects.get(usuario=request.user)
+            url = avatar.imagen.url
+        except:
+            url = "DjangoApp/media/avatar/user_default.png"
+        return render(request, 'DjangoApp/perfil.html', {'url': url})
+
     return render(request, 'DjangoApp/perfil.html',)
 
 @login_required
@@ -100,6 +117,7 @@ def editarPerfil(request):
     usuario = request.user
     if request.method == 'POST':
         form = UserEditForm(request.POST)
+
         if form.is_valid():
             info = form.cleaned_data
             usuario.email = info['email']
@@ -107,6 +125,7 @@ def editarPerfil(request):
             usuario.password2 = info['password2']
             usuario.first_name = info['first_name']
             usuario.last_name = info['last_name']
+
             usuario.save()
 
             return redirect('perfil')
@@ -115,6 +134,23 @@ def editarPerfil(request):
 
     ctx = {'form': form,}
     return render(request, 'DjangoApp/editarPerfil.html', ctx)
+
+
+def avatar(request):
+    if request.method == "POST":
+        form = EditarAvatar(request.POST, request.FILES)
+        if form.is_valid():
+            u = User.objects.get(username=request.user)
+            avatar = Avatar(imagen=form.cleaned_data['imagen'])
+            avatar.save()
+            return redirect('perfil')
+
+    else:
+        form = EditarAvatar()
+
+    ctx = {"form": form}
+    return render(request, 'DjangoApp/avatar.html' ,ctx)
+
 
 
 
@@ -144,7 +180,7 @@ def comentarios(request):
         form = CommentForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('comentarios')
+            return redirect('blog')
 
     else:
         form = CommentForm()
@@ -153,6 +189,7 @@ def comentarios(request):
     return render(request, 'DjangoApp/comentarios.html' ,ctx)
 
 
+@staff_member_required
 def agregarServicio(request):
 
     if request.method == "POST":
@@ -170,6 +207,7 @@ def agregarServicio(request):
 
 #------------- sección post --------------#
 
+@staff_member_required
 def crearPost(request):
 
     if request.method == "POST":
@@ -185,12 +223,14 @@ def crearPost(request):
     ctx = {"form": form,}
     return render(request, 'DjangoApp/crearPost.html' ,ctx)
 
-
+@staff_member_required
 def eliminarPost(request, post_id):
     post = Post.objects.get(id=post_id)
     post.delete()
     return redirect('blog')
 
+
+@staff_member_required
 def editarPost(request, post_id):
     post = Post.objects.get(id=post_id)
     form = CrearPost(request.POST, request.FILES)

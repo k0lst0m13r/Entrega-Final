@@ -26,3 +26,10 @@ class Post(models.Model):
     fecha = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return f"Autor: {self.autor} - Titulo: {self.titulo}"
+
+
+class Avatar(models.Model):
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to='avatar/', null=True, blank=True)
+    def __str__(self):
+        return f"Usuario: {self.usuario}"
