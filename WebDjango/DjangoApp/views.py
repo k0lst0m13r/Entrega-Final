@@ -120,6 +120,7 @@ def editarPerfil(request):
 
         if form.is_valid():
             info = form.cleaned_data
+            usuario.username = info['username']
             usuario.email = info['email']
             usuario.password1 = info['password1']
             usuario.password2 = info['password2']
@@ -130,7 +131,7 @@ def editarPerfil(request):
 
             return redirect('perfil')
     else:
-        form = UserEditForm(initial={'email':usuario.email, 'first_name':usuario.first_name, 'last_name': usuario.last_name,})
+        form = UserEditForm(initial={'username': usuario.username, 'email':usuario.email, 'first_name':usuario.first_name, 'last_name': usuario.last_name,})
 
     ctx = {'form': form,}
     return render(request, 'DjangoApp/editarPerfil.html', ctx)
